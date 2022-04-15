@@ -20,7 +20,7 @@ class AtividadeparticipanteController extends Controller
     {
         abort_if(Gate::denies('atividadeparticipante_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $atividadeparticipantes = Atividadeparticipante::with(['jf', 'grupo', 'equipa'])->get();
+        $atividadeparticipantes = Atividadeparticipante::with(['jf', 'grupo', 'equipa', 'created_by'])->get();
 
         return view('frontend.atividadeparticipantes.index', compact('atividadeparticipantes'));
     }
@@ -55,7 +55,7 @@ class AtividadeparticipanteController extends Controller
 
         $equipas = Equipa::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $atividadeparticipante->load('jf', 'grupo', 'equipa');
+        $atividadeparticipante->load('jf', 'grupo', 'equipa', 'created_by');
 
         return view('frontend.atividadeparticipantes.edit', compact('atividadeparticipante', 'equipas', 'grupos', 'jfs'));
     }
@@ -71,7 +71,7 @@ class AtividadeparticipanteController extends Controller
     {
         abort_if(Gate::denies('atividadeparticipante_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $atividadeparticipante->load('jf', 'grupo', 'equipa');
+        $atividadeparticipante->load('jf', 'grupo', 'equipa', 'created_by');
 
         return view('frontend.atividadeparticipantes.show', compact('atividadeparticipante'));
     }

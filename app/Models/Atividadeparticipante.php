@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use \DateTimeInterface;
+use App\Traits\MultiTenantModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Atividadeparticipante extends Model
 {
+    use MultiTenantModelTrait;
     use HasFactory;
 
     public const BEBIDA_RADIO = [
@@ -70,6 +72,7 @@ class Atividadeparticipante extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'created_by_id',
     ];
 
     public function jf()
@@ -85,6 +88,11 @@ class Atividadeparticipante extends Model
     public function equipa()
     {
         return $this->belongsTo(Equipa::class, 'equipa_id');
+    }
+
+    public function created_by()
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

@@ -20,7 +20,7 @@ class ActividadejfController extends Controller
     {
         abort_if(Gate::denies('actividadejf_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $actividadejfs = Actividadejf::with(['jf', 'grupo', 'equipa'])->get();
+        $actividadejfs = Actividadejf::with(['jf', 'grupo', 'equipa', 'created_by'])->get();
 
         return view('frontend.actividadejfs.index', compact('actividadejfs'));
     }
@@ -55,7 +55,7 @@ class ActividadejfController extends Controller
 
         $equipas = Equipa::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $actividadejf->load('jf', 'grupo', 'equipa');
+        $actividadejf->load('jf', 'grupo', 'equipa', 'created_by');
 
         return view('frontend.actividadejfs.edit', compact('actividadejf', 'equipas', 'grupos', 'jfs'));
     }
@@ -71,7 +71,7 @@ class ActividadejfController extends Controller
     {
         abort_if(Gate::denies('actividadejf_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $actividadejf->load('jf', 'grupo', 'equipa');
+        $actividadejf->load('jf', 'grupo', 'equipa', 'created_by');
 
         return view('frontend.actividadejfs.show', compact('actividadejf'));
     }

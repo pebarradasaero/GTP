@@ -15,6 +15,8 @@ class AddRelationshipFieldsToAtividadeparticipantesTable extends Migration
             $table->foreign('grupo_id', 'grupo_fk_6428675')->references('id')->on('grupos');
             $table->unsignedBigInteger('equipa_id')->nullable();
             $table->foreign('equipa_id', 'equipa_fk_6428676')->references('id')->on('equipas');
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->foreign('created_by_id', 'created_by_fk_6438169')->references('id')->on('users');
         });
     }
 }
