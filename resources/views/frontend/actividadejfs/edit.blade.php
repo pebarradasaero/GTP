@@ -58,10 +58,10 @@
                         <div class="form-group">
                             <label class="required">{{ trans('cruds.actividadejf.fields.atividade') }}</label>
                             @foreach(App\Models\Actividadejf::ATIVIDADE_RADIO as $key => $label)
-                                <div>
+                                
                                     <input type="radio" id="atividade_{{ $key }}" name="atividade" value="{{ $key }}" {{ old('atividade', $actividadejf->atividade) === (string) $key ? 'checked' : '' }} required>
                                     <label for="atividade_{{ $key }}">{{ $label }}</label>
-                                </div>
+                                
                             @endforeach
                             @if($errors->has('atividade'))
                                 <div class="invalid-feedback">

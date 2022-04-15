@@ -58,10 +58,10 @@
                         <div class="form-group">
                             <label class="required">{{ trans('cruds.atividadeparticipante.fields.petisco') }}</label>
                             @foreach(App\Models\Atividadeparticipante::PETISCO_RADIO as $key => $label)
-                                <div>
-                                    <input type="radio" id="petisco_{{ $key }}" name="petisco" value="{{ $key }}" {{ old('petisco', $atividadeparticipante->petisco) === (string) $key ? 'checked' : '' }} required>
-                                    <label for="petisco_{{ $key }}">{{ $label }}</label>
-                                </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="petisco_{{ $key }}" name="petisco" value="{{ $key }}" {{ old('petisco', $atividadeparticipante->petisco) === (string) $key ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="petisco_{{ $key }}">{{ $label }}</label>
+                            </div>
                             @endforeach
                             @if($errors->has('petisco'))
                                 <div class="invalid-feedback">
@@ -73,10 +73,10 @@
                         <div class="form-group">
                             <label class="required">{{ trans('cruds.atividadeparticipante.fields.bebida') }}</label>
                             @foreach(App\Models\Atividadeparticipante::BEBIDA_RADIO as $key => $label)
-                                <div>
-                                    <input type="radio" id="bebida_{{ $key }}" name="bebida" value="{{ $key }}" {{ old('bebida', $atividadeparticipante->bebida) === (string) $key ? 'checked' : '' }} required>
-                                    <label for="bebida_{{ $key }}">{{ $label }}</label>
-                                </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="bebida_{{ $key }}" name="bebida" value="{{ $key }}" {{ old('bebida', $atividadeparticipante->bebida) === (string) $key ? 'checked' : '' }} required>
+                                <label class="form-check-label" for="bebida_{{ $key }}">{{ $label }}</label>
+                            </div>
                             @endforeach
                             @if($errors->has('bebida'))
                                 <div class="invalid-feedback">
@@ -88,10 +88,10 @@
                         <div class="form-group">
                             <label class="required">{{ trans('cruds.atividadeparticipante.fields.atividade') }}</label>
                             @foreach(App\Models\Atividadeparticipante::ATIVIDADE_RADIO as $key => $label)
-                                <div>
-                                    <input type="radio" id="atividade_{{ $key }}" name="atividade" value="{{ $key }}" {{ old('atividade', $atividadeparticipante->atividade) === (string) $key ? 'checked' : '' }} required>
-                                    <label for="atividade_{{ $key }}">{{ $label }}</label>
-                                </div>
+                            <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="atividade_{{ $key }}" name="atividade" value="{{ $key }}" {{ old('atividade', $atividadeparticipante->atividade) === (string) $key ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="atividade_{{ $key }}">{{ $label }}</label>
+                            </div>
                             @endforeach
                             @if($errors->has('atividade'))
                                 <div class="invalid-feedback">
