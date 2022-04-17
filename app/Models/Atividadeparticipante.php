@@ -69,6 +69,8 @@ class Atividadeparticipante extends Model
         'petisco',
         'bebida',
         'atividade',
+        'checkin',
+        'checkout',
         'created_at',
         'updated_at',
         'deleted_at',

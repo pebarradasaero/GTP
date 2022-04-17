@@ -13,6 +13,8 @@ class CreateAtividadeparticipantesTable extends Migration
             $table->string('petisco');
             $table->string('bebida');
             $table->string('atividade');
+            $table->timestamp('checkin');
+            $table->timestamp('checkout');
             $table->timestamps();
         });
     }

@@ -41,7 +41,14 @@ class LoginController extends Controller
         if (auth()->user()->is_admin) {
             return '/admin';
         }
-
+        if(auth()->user()->roles[0]->title =='Equipas')
+        {
+            return '/atividadeparticipantes';
+        }
+        if(auth()->user()->roles[0]->title =='JFreguesias')
+        {
+            return '/actividadejfs';
+        }
         return '/home';
     }
     public function username()

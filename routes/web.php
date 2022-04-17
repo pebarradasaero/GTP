@@ -1,6 +1,8 @@
 <?php
 
-Route::view('/', 'welcome');
+Route::get('/', function(){
+    return redirect()->route('login');
+});
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {

@@ -35,9 +35,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/atividadeparticipantes') }}">
+                    <img src="/images/logo_ca.png" > 
                 </a>
+                <h3>     {{ config('app.name', 'Laravel') }}</h3>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,11 +48,7 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('frontend.home') }}">
-                                    {{ __('Dashboard') }}
-                                </a>
-                            </li>
+                            
                         @endguest
                     </ul>
 
@@ -72,72 +69,11 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
-
-                                    @can('user_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.userManagement.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('permission_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.permissions.index') }}">
-                                            {{ trans('cruds.permission.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('role_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.roles.index') }}">
-                                            {{ trans('cruds.role.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.users.index') }}">
-                                            {{ trans('cruds.user.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('gestao_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.gestao.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('juntas_freguesium_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.juntas-freguesia.index') }}">
-                                            {{ trans('cruds.juntasFreguesium.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('grupo_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.grupos.index') }}">
-                                            {{ trans('cruds.grupo.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('equipa_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.equipas.index') }}">
-                                            {{ trans('cruds.equipa.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('atividade_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.atividade.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('actividadejf_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.actividadejfs.index') }}">
-                                            {{ trans('cruds.actividadejf.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('atividadeparticipante_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.atividadeparticipantes.index') }}">
-                                            {{ trans('cruds.atividadeparticipante.title') }}
-                                        </a>
-                                    @endcan
-
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Sair') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

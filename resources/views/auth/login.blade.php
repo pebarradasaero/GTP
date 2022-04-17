@@ -4,10 +4,10 @@
     <div class="col-md-6">
         <div class="card mx-4">
             <div class="card-body p-4">
-                <h1>{{ trans('panel.site_title') }}</h1>
+                <center><h1>{{ trans('panel.site_title') }}</h1></center>
 
-                <p class="text-muted">{{ trans('global.login') }}</p>
-
+                <p class="text-muted"><br><center><img src="/images/Cartaz-TransPTG2022.png" ></center></p>
+                <p><br></p>
                 @if(session('message'))
                     <div class="alert alert-info" role="alert">
                         {{ session('message') }}
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="input-group mb-4">
-                        <div class="form-check checkbox">
+                        <div class="form-check checkbox" style="display: none">
                             <input class="form-check-input" name="remember" type="checkbox" id="remember" style="vertical-align: middle;" />
                             <label class="form-check-label" for="remember" style="vertical-align: middle;">
                                 {{ trans('global.remember_me') }}
@@ -62,7 +62,7 @@
                                 {{ trans('global.login') }}
                             </button>
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="col-6 text-right" style="display: none">
                             @if(Route::has('password.request'))
                                 <a class="btn btn-link px-0" href="{{ route('password.request') }}">
                                     {{ trans('global.forgot_password') }}

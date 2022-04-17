@@ -18,15 +18,15 @@ class UpdateAtividadeparticipanteRequest extends FormRequest
     {
         return [
             'jf_id' => [
-                'required',
+                
                 'integer',
             ],
             'grupo_id' => [
-                'required',
+                
                 'integer',
             ],
             'equipa_id' => [
-                'required',
+                
                 'integer',
             ],
             'petisco' => [

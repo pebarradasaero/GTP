@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'GTP',
+    'site_title' => 'TransPortalegre 2022',
 ];

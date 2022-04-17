@@ -13,6 +13,8 @@ use App\Models\JuntasFreguesium;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Carbon;
+
 
 class AtividadeparticipanteController extends Controller
 {
@@ -21,6 +23,8 @@ class AtividadeparticipanteController extends Controller
         abort_if(Gate::denies('atividadeparticipante_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $atividadeparticipantes = Atividadeparticipante::with(['jf', 'grupo', 'equipa', 'created_by'])->get();
+        $tempo = Carbon::parse($atividadeparticipantes[0]->checkin)->diffInMinutes(Carbon::parse($atividadeparticipantes[0]->checkout));
+        
 
         return view('frontend.atividadeparticipantes.index', compact('atividadeparticipantes'));
     }
@@ -49,6 +53,14 @@ class AtividadeparticipanteController extends Controller
     {
         abort_if(Gate::denies('atividadeparticipante_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        if ($atividadeparticipante->checkin != "") {
+            //ja existe checkin
+        } else {
+            //iniciar contador
+            $atividadeparticipante->checkin = Carbon::now()->toDateTimeString();
+            $atividadeparticipante->save();
+        }
+
         $jfs = JuntasFreguesium::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $grupos = Grupo::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -57,12 +69,18 @@ class AtividadeparticipanteController extends Controller
 
         $atividadeparticipante->load('jf', 'grupo', 'equipa', 'created_by');
 
+
+
         return view('frontend.atividadeparticipantes.edit', compact('atividadeparticipante', 'equipas', 'grupos', 'jfs'));
     }
 
     public function update(UpdateAtividadeparticipanteRequest $request, Atividadeparticipante $atividadeparticipante)
     {
         $atividadeparticipante->update($request->all());
+
+        //faz checkout para terminar atividade
+        $atividadeparticipante->checkout = Carbon::now()->toDateTimeString();
+        $atividadeparticipante->save();
 
         return redirect()->route('frontend.atividadeparticipantes.index');
     }
