@@ -4,6 +4,7 @@ namespace App\Models;
 
 use \DateTimeInterface;
 use App\Traits\MultiTenantModelTrait;
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class Actividadejf extends Model
 {
     use MultiTenantModelTrait;
     use HasFactory;
+    use Auditable;
 
     public const SIMPATIA_RADIO = [
         '0'  => '0',

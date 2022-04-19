@@ -171,6 +171,8 @@ return [
             'bebida_helper'     => ' ',
             'atividade'         => 'Atividade',
             'atividade_helper'  => ' ',
+            'tempogasto'         => 'Tempo Gasto',
+            'tempogasto_helper'  => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',

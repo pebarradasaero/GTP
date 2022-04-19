@@ -58,7 +58,7 @@
                                 {{ $atividadeparticipante->id ?? '' }}
                             </td>
                             <td>
-                                {{ $atividadeparticipante->jf->nome ?? '' }}
+                                {{ $atividadeparticipante->jf->nome ?? '' }} / {{ $atividadeparticipante->jf->localidade ?? '' }}
                             </td>
                             <td>
                                 {{ $atividadeparticipante->grupo->nome ?? '' }}

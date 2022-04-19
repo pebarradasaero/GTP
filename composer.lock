@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bca3ede8d180dd46acd1ba8c2c3be82a",
+    "content-hash": "d1bae097739a7183c7efa8fac9d01e55",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1633,16 +1633,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.0.16",
+            "version": "3.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "dea729954c596bdb6cdaecba6f73df9f3e2c4255"
+                "reference": "29eb78cac0be0c22237c5e0f6f98234d97037d79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/dea729954c596bdb6cdaecba6f73df9f3e2c4255",
-                "reference": "dea729954c596bdb6cdaecba6f73df9f3e2c4255",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/29eb78cac0be0c22237c5e0f6f98234d97037d79",
+                "reference": "29eb78cac0be0c22237c5e0f6f98234d97037d79",
                 "shasum": ""
             },
             "require": {
@@ -1703,7 +1703,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.0.16"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.0.17"
             },
             "funding": [
                 {
@@ -1719,20 +1719,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-11T13:32:22+00:00"
+            "time": "2022-04-14T14:57:13+00:00"
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "3e4a35d756eedc67096f30240a68a3149120dae7"
+                "reference": "ff6248ea87a9f116e78edd6002e39e5128a0d4dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3e4a35d756eedc67096f30240a68a3149120dae7",
-                "reference": "3e4a35d756eedc67096f30240a68a3149120dae7",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/ff6248ea87a9f116e78edd6002e39e5128a0d4dd",
+                "reference": "ff6248ea87a9f116e78edd6002e39e5128a0d4dd",
                 "shasum": ""
             },
             "require": {
@@ -1763,7 +1763,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.10.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.11.0"
             },
             "funding": [
                 {
@@ -1775,7 +1775,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-11T12:49:04+00:00"
+            "time": "2022-04-17T13:12:02+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2174,6 +2174,59 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
             },
             "time": "2021-11-30T19:35:32+00:00"
+        },
+        {
+            "name": "nuovo/spreadsheet-reader",
+            "version": "0.5.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nuovo/spreadsheet-reader.git",
+                "reference": "f6bd49d101042eaa71b0fbd82e7a57e5a276dc3d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nuovo/spreadsheet-reader/zipball/f6bd49d101042eaa71b0fbd82e7a57e5a276dc3d",
+                "reference": "f6bd49d101042eaa71b0fbd82e7a57e5a276dc3d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "php": ">= 5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "./"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martins Pilsetnieks",
+                    "email": "pilsetnieks@gmail.com",
+                    "homepage": "http://www.nuovo.lv/"
+                }
+            ],
+            "description": "Spreadsheet reader library for Excel, OpenOffice and structured text files",
+            "homepage": "https://github.com/nuovo/spreadsheet-reader",
+            "keywords": [
+                "OpenOffice",
+                "csv",
+                "excel",
+                "ods",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "support": {
+                "email": "spreadsheet-reader@nuovo.lv",
+                "issues": "https://github.com/nuovo/spreadsheet-reader/issues",
+                "source": "https://github.com/nuovo/spreadsheet-reader/tree/v0.5.11"
+            },
+            "time": "2015-04-30T00:00:00+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -8056,16 +8109,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "9ad1d32acf8c855d711964bc19092b0bc9792273"
+                "reference": "924d1ae878874ad0bb49f63b69a9af759a34ee78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/9ad1d32acf8c855d711964bc19092b0bc9792273",
-                "reference": "9ad1d32acf8c855d711964bc19092b0bc9792273",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/924d1ae878874ad0bb49f63b69a9af759a34ee78",
+                "reference": "924d1ae878874ad0bb49f63b69a9af759a34ee78",
                 "shasum": ""
             },
             "require": {
@@ -8142,7 +8195,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-13T08:06:05+00:00"
+            "time": "2022-04-14T18:04:51+00:00"
         },
         {
             "name": "theseer/tokenizer",

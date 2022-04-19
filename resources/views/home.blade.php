@@ -16,6 +16,25 @@
                     @endif
 
                     <div class="row">
+                        <div class="{{ $settings3['column_class'] }}">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body pb-0">
+                                    <div class="text-value">{{ number_format($settings3['total_number']) }}</div>
+                                    <div>{{ $settings3['chart_title'] }}</div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{ $settings4['column_class'] }}">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body pb-0">
+                                    <div class="text-value">{{ number_format($settings4['total_number']) }}</div>
+                                    <div>{{ $settings4['chart_title'] }}</div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        
                         {{-- Widget - latest entries --}}
                         <div class="{{ $settings1['column_class'] }}" style="overflow-x: auto;">
                             <h3>{{ $settings1['chart_title'] }}</h3>
@@ -94,24 +113,7 @@
                             </table>
                         </div>
 
-                        <div class="{{ $settings3['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
-                                    <div class="text-value">{{ number_format($settings3['total_number']) }}</div>
-                                    <div>{{ $settings3['chart_title'] }}</div>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="{{ $settings4['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
-                                    <div class="text-value">{{ number_format($settings4['total_number']) }}</div>
-                                    <div>{{ $settings4['chart_title'] }}</div>
-                                    <br />
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

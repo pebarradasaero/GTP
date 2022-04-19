@@ -58,6 +58,7 @@ class HomeController
                 'petisco'   => '',
                 'bebida'    => '',
                 'atividade' => '',
+                'tempogasto' => '',
             ],
             'relationship_name' => 'equipa',
             'translation_key'   => 'atividadeparticipante',
