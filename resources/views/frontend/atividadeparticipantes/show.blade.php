@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('layouts.frontend')
 @section('content')
 <div class="container">
@@ -13,19 +16,12 @@
                     <div class="form-group">
                         <div class="form-group">
                             <a class="btn btn-default" href="{{ route('frontend.atividadeparticipantes.index') }}">
-                                {{ trans('global.back_to_list') }}
+                                Voltar
                             </a>
                         </div>
                         <table class="table table-bordered table-striped">
                             <tbody>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.atividadeparticipante.fields.id') }}
-                                    </th>
-                                    <td>
-                                        {{ $atividadeparticipante->id }}
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <th>
                                         {{ trans('cruds.atividadeparticipante.fields.jf') }}
@@ -74,11 +70,19 @@
                                         {{ App\Models\Atividadeparticipante::ATIVIDADE_RADIO[$atividadeparticipante->atividade] ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        Tempo Gasto
+                                    </th>
+                                    <td>
+                                        {{ gmdate('H:i:s',Carbon::parse($atividadeparticipante->checkin)->diffInSeconds(Carbon::parse($atividadeparticipante->checkout))); }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
                             <a class="btn btn-default" href="{{ route('frontend.atividadeparticipantes.index') }}">
-                                {{ trans('global.back_to_list') }}
+                                Voltar
                             </a>
                         </div>
                     </div>

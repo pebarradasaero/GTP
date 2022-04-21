@@ -1,9 +1,3 @@
-@php
-use Carbon\Carbon;
-$inicio = $atividadeparticipante->checkin;
-$valorss = $atividadeparticipante->senhasaida;
-//dd($valorss);
-@endphp
 @extends('layouts.frontend')
 @section('content')
     <div class="container">
@@ -21,6 +15,10 @@ $valorss = $atividadeparticipante->senhasaida;
                             enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
+                            <div class="form-group" style="text-align: center">
+                               <strong> {{ $atividadeparticipante->jf->nome ?? '' }} - 
+                                    {{ $atividadeparticipante->equipa->nome ?? '' }}</strong>
+                            </div>
                             <div class="form-group" style="display: none">
                                 <label class="required"
                                     for="jf_id">{{ trans('cruds.atividadeparticipante.fields.jf') }}</label>
@@ -184,9 +182,9 @@ $valorss = $atividadeparticipante->senhasaida;
     @parent
     <script>
         $(function() {
-            alert('aqui!');
+            //alert('aqui!');
         });
-        
+
         $("#codigosaida").on("input", function() {
             var codigosaida = $("#codigosaida").val();
             var senhasaida = {{ $atividadeparticipante->senhasaida }};
@@ -199,7 +197,7 @@ $valorss = $atividadeparticipante->senhasaida;
         })
 
         function showTime() {
-            var inicio = moment('{{ $inicio }}').toDate().getTime();
+            var inicio = moment('{{ $atividadeparticipante->checkin }}').toDate().getTime();
             var agora = moment(Date.now()).toDate().getTime();
             var diff = moment(inicio - agora);
             diff.add(20, 'minutes');
