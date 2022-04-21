@@ -2,7 +2,7 @@
 @section('content')
 @can('registo_regularidade_create')
     <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="display: none">
             <a class="btn btn-success" href="{{ route('admin.registo-regularidades.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.registoRegularidade.title_singular') }}
             </a>
@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.registoRegularidade.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.list') }} - {{ trans('cruds.registoRegularidade.title_singular') }} 
     </div>
 
     <div class="card-body">
@@ -23,7 +23,7 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.registoRegularidade.fields.id') }}
+                            &nbsp;
                         </th>
                         <th>
                             {{ trans('cruds.registoRegularidade.fields.grupo') }}
@@ -37,9 +37,7 @@
                         <th>
                             {{ trans('cruds.registoRegularidade.fields.regularidade_2') }}
                         </th>
-                        <th>
-                            &nbsp;
-                        </th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +47,11 @@
 
                             </td>
                             <td>
-                                {{ $registoRegularidade->id ?? '' }}
+                                @can('registo_regularidade_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.registo-regularidades.edit', $registoRegularidade->id) }}">
+                                        Registar
+                                    </a>
+                                @endcan
                             </td>
                             <td>
                                 {{ $registoRegularidade->grupo->nome ?? '' }}
@@ -63,28 +65,7 @@
                             <td>
                                 {{ App\Models\RegistoRegularidade::REGULARIDADE_2_RADIO[$registoRegularidade->regularidade_2] ?? '' }}
                             </td>
-                            <td>
-                                @can('registo_regularidade_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.registo-regularidades.show', $registoRegularidade->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-
-                                @can('registo_regularidade_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.registo-regularidades.edit', $registoRegularidade->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-
-                                @can('registo_regularidade_delete')
-                                    <form action="{{ route('admin.registo-regularidades.destroy', $registoRegularidade->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-
-                            </td>
+                            
 
                         </tr>
                     @endforeach
@@ -134,7 +115,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 3, 'asc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-RegistoRegularidade:not(.ajaxTable)').DataTable({ buttons: dtButtons })

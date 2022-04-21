@@ -156,8 +156,6 @@ return [
     'atividadeparticipante' => [
         'title'          => 'Atividade Participantes',
         'title_singular' => 'Atividade Participante',
-        'titleregularidade'          => 'Registo Regularidade Participantes',
-        'titleregularidade_singular' => 'Registo Regularidade Participante',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -211,6 +209,28 @@ return [
             'created_at_helper'   => ' ',
             'updated_at'          => 'Updated at',
             'updated_at_helper'   => ' ',
+        ],
+    ],
+    'registoRegularidade' => [
+        'title'          => 'Registo Regularidade',
+        'title_singular' => 'Registo Regularidade',
+        'fields'         => [
+            'id'                    => 'ID',
+            'id_helper'             => ' ',
+            'grupo'                 => 'Grupo',
+            'grupo_helper'          => ' ',
+            'equipa'                => 'Equipa',
+            'equipa_helper'         => ' ',
+            'regularidade_1'        => 'Regularidade 1',
+            'regularidade_1_helper' => ' ',
+            'regularidade_2'        => 'Regularidade 2',
+            'regularidade_2_helper' => ' ',
+            'created_at'            => 'Created at',
+            'created_at_helper'     => ' ',
+            'updated_at'            => 'Updated at',
+            'updated_at_helper'     => ' ',
+            'deleted_at'            => 'Deleted at',
+            'deleted_at_helper'     => ' ',
         ],
     ],
 ];

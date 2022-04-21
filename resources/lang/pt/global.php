@@ -20,7 +20,7 @@ return [
     'filterDate'                     => 'E-mail do utilizador verificado com sucesso',
     'forgot_password'                => 'Esqueceu-se da senha?',
     'home'                           => 'Início',
-    'list'                           => 'Listar',
+    'list'                           => 'Listagem',
     'login'                          => 'Entrar',
     'login_username'                 => 'Nome de Utilizador',
     'login_email'                    => 'E-mail',

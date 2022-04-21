@@ -17,10 +17,6 @@ class UpdateRegistoRegularidadeRequest extends FormRequest
     public function rules()
     {
         return [
-            'equipa_id' => [
-                'required',
-                'integer',
-            ],
             'regularidade_1' => [
                 'required',
             ],

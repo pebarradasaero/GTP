@@ -10,8 +10,8 @@ class CreateRegistoRegularidadesTable extends Migration
     {
         Schema::create('registo_regularidades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('regularidade_1');
-            $table->string('regularidade_2');
+            $table->string('regularidade_1')->nullable();;
+            $table->string('regularidade_2')->nullable();;
             $table->timestamps();
         });
     }
