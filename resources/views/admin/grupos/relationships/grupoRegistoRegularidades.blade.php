@@ -1,35 +1,40 @@
-@extends('layouts.admin')
-@section('content')
-@can('equipa_create')
+@can('registo_regularidade_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.equipas.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.equipa.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.registo-regularidades.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.registoRegularidade.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
+
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.equipa.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.registoRegularidade.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Equipa">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-grupoRegistoRegularidades">
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
                         <th>
-                            {{ trans('cruds.equipa.fields.id') }}
+                            {{ trans('cruds.registoRegularidade.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.equipa.fields.nome') }}
+                            {{ trans('cruds.registoRegularidade.fields.grupo') }}
                         </th>
                         <th>
-                            {{ trans('cruds.equipa.fields.grupo') }}
+                            {{ trans('cruds.registoRegularidade.fields.equipa') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.registoRegularidade.fields.regularidade_1') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.registoRegularidade.fields.regularidade_2') }}
                         </th>
                         <th>
                             &nbsp;
@@ -37,35 +42,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($equipas as $key => $equipa)
-                        <tr data-entry-id="{{ $equipa->id }}">
+                    @foreach($registoRegularidades as $key => $registoRegularidade)
+                        <tr data-entry-id="{{ $registoRegularidade->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $equipa->id ?? '' }}
+                                {{ $registoRegularidade->id ?? '' }}
                             </td>
                             <td>
-                                {{ $equipa->nome ?? '' }}
+                                {{ $registoRegularidade->grupo->nome ?? '' }}
                             </td>
                             <td>
-                                {{ $equipa->grupo->nome ?? '' }}
+                                {{ $registoRegularidade->equipa->nome ?? '' }}
                             </td>
                             <td>
-                                @can('equipa_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.equipas.show', $equipa->id) }}">
+                                {{ App\Models\RegistoRegularidade::REGULARIDADE_1_RADIO[$registoRegularidade->regularidade_1] ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Models\RegistoRegularidade::REGULARIDADE_2_RADIO[$registoRegularidade->regularidade_2] ?? '' }}
+                            </td>
+                            <td>
+                                @can('registo_regularidade_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.registo-regularidades.show', $registoRegularidade->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
 
-                                @can('equipa_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.equipas.edit', $equipa->id) }}">
+                                @can('registo_regularidade_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.registo-regularidades.edit', $registoRegularidade->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('equipa_delete')
-                                    <form action="{{ route('admin.equipas.destroy', $equipa->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('registo_regularidade_delete')
+                                    <form action="{{ route('admin.registo-regularidades.destroy', $registoRegularidade->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -82,19 +93,16 @@
     </div>
 </div>
 
-
-
-@endsection
 @section('scripts')
 @parent
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('equipa_delete')
+@can('registo_regularidade_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.equipas.massDestroy') }}",
+    url: "{{ route('admin.registo-regularidades.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -125,7 +133,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-Equipa:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-grupoRegistoRegularidades:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

@@ -26,11 +26,9 @@ class UpdateAtividadeparticipanteRequest extends FormRequest
                 'integer',
             ],
             'equipa_id' => [
-                
                 'integer',
             ],
             'senhasaida' => [
-                
                 'integer',
             ],
             'petisco' => [

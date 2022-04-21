@@ -156,6 +156,8 @@ return [
     'atividadeparticipante' => [
         'title'          => 'Atividade Participantes',
         'title_singular' => 'Atividade Participante',
+        'titleregularidade'          => 'Registo Regularidade Participantes',
+        'titleregularidade_singular' => 'Registo Regularidade Participante',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -171,6 +173,10 @@ return [
             'bebida_helper'     => ' ',
             'atividade'         => 'Atividade',
             'atividade_helper'  => ' ',
+            'regularidade1'         => 'Regularidade 1',
+            'regularidade1_helper'  => ' ',
+            'regularidade2'         => 'Regularidade 2',
+            'regularidade2_helper'  => ' ',
             'tempogasto'         => 'Tempo Gasto',
             'tempogasto_helper'  => ' ',
             'created_at'        => 'Created at',

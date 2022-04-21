@@ -42,6 +42,11 @@ class Grupo extends Model
         return $this->hasMany(Atividadeparticipante::class, 'grupo_id', 'id');
     }
 
+    public function grupoRegistoRegularidades()
+    {
+        return $this->hasMany(RegistoRegularidade::class, 'grupo_id', 'id');
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');

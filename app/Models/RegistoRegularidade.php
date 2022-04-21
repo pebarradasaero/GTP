@@ -3,18 +3,14 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-use App\Traits\MultiTenantModelTrait;
-use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Atividadeparticipante extends Model
+class RegistoRegularidade extends Model
 {
-    use MultiTenantModelTrait;
     use HasFactory;
-    use Auditable;
 
-    public const BEBIDA_RADIO = [
+    public const REGULARIDADE_1_RADIO = [
         '0'  => '0',
         '1'  => '1',
         '2'  => '2',
@@ -28,7 +24,7 @@ class Atividadeparticipante extends Model
         '10' => '10',
     ];
 
-    public const PETISCO_RADIO = [
+    public const REGULARIDADE_2_RADIO = [
         '0'  => '0',
         '1'  => '1',
         '2'  => '2',
@@ -42,21 +38,7 @@ class Atividadeparticipante extends Model
         '10' => '10',
     ];
 
-    public const ATIVIDADE_RADIO = [
-        '0'  => '0',
-        '1'  => '1',
-        '2'  => '2',
-        '3'  => '3',
-        '4'  => '4',
-        '5'  => '5',
-        '6'  => '6',
-        '7'  => '7',
-        '8'  => '8',
-        '9'  => '9',
-        '10' => '10',
-    ];
-
-    public $table = 'atividadeparticipantes';
+    public $table = 'registo_regularidades';
 
     protected $dates = [
         'created_at',
@@ -65,27 +47,14 @@ class Atividadeparticipante extends Model
     ];
 
     protected $fillable = [
-        'jf_id',
         'grupo_id',
         'equipa_id',
-        'petisco',
-        'bebida',
-        'atividade',
-        'regularidade1',
-        'regularidade2',
-        'checkin',
-        'checkout',
-        'senhasaida',
+        'regularidade_1',
+        'regularidade_2',
         'created_at',
         'updated_at',
         'deleted_at',
-        'created_by_id',
     ];
-
-    public function jf()
-    {
-        return $this->belongsTo(JuntasFreguesium::class, 'jf_id');
-    }
 
     public function grupo()
     {
@@ -95,11 +64,6 @@ class Atividadeparticipante extends Model
     public function equipa()
     {
         return $this->belongsTo(Equipa::class, 'equipa_id');
-    }
-
-    public function created_by()
-    {
-        return $this->belongsTo(User::class, 'created_by_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

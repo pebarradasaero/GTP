@@ -37,6 +37,7 @@ class AtividadeparticipanteController extends Controller
 
         return view('admin.atividadeparticipantes.create', compact('equipas', 'grupos', 'jfs'));
     }
+    
 
     public function store(StoreAtividadeparticipanteRequest $request)
     {

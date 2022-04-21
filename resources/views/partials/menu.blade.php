@@ -110,7 +110,7 @@
             </li>
         @endcan
         @can('atividade_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/actividadejfs*") ? "c-show" : "" }} {{ request()->is("admin/atividadeparticipantes*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/actividadejfs*") ? "c-show" : "" }} {{ request()->is("admin/atividadeparticipantes*") ? "c-show" : "" }} {{ request()->is("admin/registo-regularidades*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-chart-line c-sidebar-nav-icon">
 
@@ -135,6 +135,16 @@
 
                                 </i>
                                 {{ trans('cruds.atividadeparticipante.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('registo_regularidade_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.registo-regularidades.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/registo-regularidades") || request()->is("admin/registo-regularidades/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-map-marked-alt c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.registoRegularidade.title') }}
                             </a>
                         </li>
                     @endcan

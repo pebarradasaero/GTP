@@ -38,11 +38,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('actividadejfs', 'ActividadejfController');
 
     // Atividadeparticipante
+    
     Route::delete('atividadeparticipantes/destroy', 'AtividadeparticipanteController@massDestroy')->name('atividadeparticipantes.massDestroy');
     Route::resource('atividadeparticipantes', 'AtividadeparticipanteController');
 
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    // Registo Regularidade
+    Route::delete('registo-regularidades/destroy', 'RegistoRegularidadeController@massDestroy')->name('registo-regularidades.massDestroy');
+    Route::resource('registo-regularidades', 'RegistoRegularidadeController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
