@@ -19,7 +19,9 @@ use Carbon\Carbon;
                 @endcan
                 <div class="card">
                     <div class="card-header">
-                        {{ trans('cruds.atividadeparticipante.title_singular') }} {{ trans('global.list') }}
+                        @foreach ($atividadeparticipantes as $key => $atividadeparticipante)
+                        {{ $atividadeparticipante->jf->nome ?? '' }} - <strong> {{ $atividadeparticipante->equipa->nome ?? '' }}</strong>
+                        @endforeach
                     </div>
 
                     <div class="card-body">
@@ -29,16 +31,7 @@ use Carbon\Carbon;
                                 <thead>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.atividadeparticipante.fields.id') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.atividadeparticipante.fields.jf') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.atividadeparticipante.fields.grupo') }}
-                                        </th>
-                                        <th>
-                                            {{ trans('cruds.atividadeparticipante.fields.equipa') }}
+                                            &nbsp;
                                         </th>
                                         <th>
                                             {{ trans('cruds.atividadeparticipante.fields.petisco') }}
@@ -52,43 +45,16 @@ use Carbon\Carbon;
                                         <th>
                                             Tempo Gasto
                                         </th>
-                                        <th>
-                                            &nbsp;
-                                        </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($atividadeparticipantes as $key => $atividadeparticipante)
                                         <tr data-entry-id="{{ $atividadeparticipante->id }}">
-                                            <td>
-                                                {{ $atividadeparticipante->id ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $atividadeparticipante->jf->nome ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $atividadeparticipante->grupo->nome ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $atividadeparticipante->equipa->nome ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ App\Models\Atividadeparticipante::PETISCO_RADIO[$atividadeparticipante->petisco] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ App\Models\Atividadeparticipante::BEBIDA_RADIO[$atividadeparticipante->bebida] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ App\Models\Atividadeparticipante::ATIVIDADE_RADIO[$atividadeparticipante->atividade] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ gmdate('H:i:s',Carbon::parse($atividadeparticipantes[0]->checkin)->diffInSeconds(Carbon::parse($atividadeparticipantes[0]->checkout))); }}
-                                            </td>
-                                            <td>
-
+                                            <td style="text-align: center">
                                                 @if ($atividadeparticipante->checkin == '')
                                                     @can('atividadeparticipante_edit')
-                                                        <a class="btn btn-xs btn-info"
+                                                        <a class="btn btn-info"
                                                             href="{{ route('frontend.atividadeparticipantes.edit', $atividadeparticipante->id) }}">
                                                             {{ trans('global.checkin') }}
                                                         </a>
@@ -96,14 +62,14 @@ use Carbon\Carbon;
                                                 @else
                                                     @if ($atividadeparticipante->checkin != '' & $atividadeparticipante->checkout == '')
                                                         @can('atividadeparticipante_edit')
-                                                            <a class="btn btn-xs btn-info"
+                                                            <a class="btn btn-danger"
                                                                 href="{{ route('frontend.atividadeparticipantes.edit', $atividadeparticipante->id) }}">
                                                                 {{ trans('global.continuarcheckin') }}
                                                             </a>
                                                         @endcan
                                                     @else
                                                         @can('atividadeparticipante_show')
-                                                            <a class="btn btn-xs btn-primary"
+                                                            <a class="btn btn-primary"
                                                                 href="{{ route('frontend.atividadeparticipantes.show', $atividadeparticipante->id) }}">
                                                                 {{ trans('global.view') }}
                                                             </a>
@@ -124,6 +90,19 @@ use Carbon\Carbon;
                                                 @endcan
 
                                             </td>
+                                            <td>
+                                                {{ App\Models\Atividadeparticipante::PETISCO_RADIO[$atividadeparticipante->petisco] ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ App\Models\Atividadeparticipante::BEBIDA_RADIO[$atividadeparticipante->bebida] ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ App\Models\Atividadeparticipante::ATIVIDADE_RADIO[$atividadeparticipante->atividade] ?? '' }}
+                                            </td>
+                                            <td>
+                                                {{ gmdate('H:i:s',Carbon::parse($atividadeparticipantes[0]->checkin)->diffInSeconds(Carbon::parse($atividadeparticipantes[0]->checkout))); }}
+                                            </td>
+                                            
 
                                         </tr>
                                     @endforeach

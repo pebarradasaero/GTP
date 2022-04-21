@@ -15,6 +15,7 @@ class CreateAtividadeparticipantesTable extends Migration
             $table->string('atividade');
             $table->timestamp('checkin');
             $table->timestamp('checkout');
+            $table->integer('senhasaida');
             $table->timestamps();
         });
     }

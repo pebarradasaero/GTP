@@ -53,6 +53,16 @@
                 <span class="help-block">{{ trans('cruds.atividadeparticipante.fields.equipa_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="senhasaida">Senha Saida: </label>
+                <input class="form-control {{ $errors->has('senhasaida') ? 'is-invalid' : '' }}" type="text" name="senhasaida" id="senhasaida" value="{{ old('nome', $atividadeparticipante->senhasaida) }}" required>
+                @if($errors->has('senhasaida'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('senhasaida') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.equipa.fields.nome_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required">{{ trans('cruds.atividadeparticipante.fields.petisco') }}</label>
                 @foreach(App\Models\Atividadeparticipante::PETISCO_RADIO as $key => $label)
                     <div class="form-check {{ $errors->has('petisco') ? 'is-invalid' : '' }}">

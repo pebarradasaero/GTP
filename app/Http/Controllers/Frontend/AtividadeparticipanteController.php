@@ -23,7 +23,7 @@ class AtividadeparticipanteController extends Controller
         abort_if(Gate::denies('atividadeparticipante_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $atividadeparticipantes = Atividadeparticipante::with(['jf', 'grupo', 'equipa', 'created_by'])->get();
-        $tempo = Carbon::parse($atividadeparticipantes[0]->checkin)->diffInMinutes(Carbon::parse($atividadeparticipantes[0]->checkout));
+        //$tempo = Carbon::parse($atividadeparticipantes[0]->checkin)->diffInMinutes(Carbon::parse($atividadeparticipantes[0]->checkout));
         
 
         return view('frontend.atividadeparticipantes.index', compact('atividadeparticipantes'));
@@ -53,12 +53,13 @@ class AtividadeparticipanteController extends Controller
     {
         abort_if(Gate::denies('atividadeparticipante_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($atividadeparticipante->checkin != "") {
-            //ja existe checkin
-        } else {
+        
+
+        if ($atividadeparticipante->checkin == "") {
             //iniciar contador
             $atividadeparticipante->checkin = Carbon::now()->toDateTimeString();
-            $atividadeparticipante->save();
+            $atividadeparticipante->update();
+           
         }
 
         $jfs = JuntasFreguesium::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -68,8 +69,7 @@ class AtividadeparticipanteController extends Controller
         $equipas = Equipa::pluck('nome', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $atividadeparticipante->load('jf', 'grupo', 'equipa', 'created_by');
-
-
+        //dd($atividadeparticipante);
 
         return view('frontend.atividadeparticipantes.edit', compact('atividadeparticipante', 'equipas', 'grupos', 'jfs'));
     }

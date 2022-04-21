@@ -1,9 +1,8 @@
 @php
 use Carbon\Carbon;
 $inicio = $atividadeparticipante->checkin;
-$today_now = Carbon::now()->subMinutes(20);
-$agora = $today_now->diffInSeconds($inicio);
-
+$valorss = $atividadeparticipante->senhasaida;
+//dd($valorss);
 @endphp
 @extends('layouts.frontend')
 @section('content')
@@ -22,7 +21,7 @@ $agora = $today_now->diffInSeconds($inicio);
                             enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label class="required"
                                     for="jf_id">{{ trans('cruds.atividadeparticipante.fields.jf') }}</label>
                                 <select class="form-control select2" name="jf_id" id="jf_id" required disabled>
@@ -40,7 +39,7 @@ $agora = $today_now->diffInSeconds($inicio);
                                 <span
                                     class="help-block">{{ trans('cruds.atividadeparticipante.fields.jf_helper') }}</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label class="required"
                                     for="grupo_id">{{ trans('cruds.atividadeparticipante.fields.grupo') }}</label>
                                 <select class="form-control select2" name="grupo_id" id="grupo_id" required disabled>
@@ -58,7 +57,7 @@ $agora = $today_now->diffInSeconds($inicio);
                                 <span
                                     class="help-block">{{ trans('cruds.atividadeparticipante.fields.grupo_helper') }}</span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label class="required"
                                     for="equipa_id">{{ trans('cruds.atividadeparticipante.fields.equipa') }}</label>
                                 <select class="form-control select2" name="equipa_id" id="equipa_id" required disabled>
@@ -150,10 +149,25 @@ $agora = $today_now->diffInSeconds($inicio);
 
                                 <span
                                     class="help-block">{{ trans('cruds.atividadeparticipante.fields.atividade_helper') }}</span>
-                            </div><br><br>
+                            </div>
                             <center>
                                 <div class="form-group">
-                                    <button class="btn btn-danger" type="submit">
+                                    <label class="required" for="senhasaida">Código
+                                        Saída: </label>
+                                    <input style="width: 100px" class="form-control" type="number" name="codigosaida"
+                                        id="codigosaida" value="{{ old('codigosaida', '') }}" required>
+                                    @if ($errors->has('codigosaida'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('codigosaida') }}
+                                        </div>
+                                    @endif
+                                    <span class="help-block">*Solicite o código de saída a um elemento da
+                                        organização.</span>
+                                </div>
+                            </center><br><br>
+                            <center>
+                                <div class="form-group">
+                                    <button class="btn btn-danger" type="submit" disabled>
                                         Terminar atividade
                                     </button>
                                 </div>
@@ -169,15 +183,29 @@ $agora = $today_now->diffInSeconds($inicio);
 @section('scripts')
     @parent
     <script>
-        function showTime() {
-            var inicio = new Date('{{ $inicio }}');
-            var agora = new Date();
-            var diff = new Date(inicio-agora);
-            diff.setMinutes( diff.getMinutes() + 20 );
-            $("#timet").text(diff.getMinutes() + ":" + diff.getSeconds()); //d.getHours() + ":" + d.getMinutes();
-        }
-
-        setInterval(showTime, 1000);
+        $(function() {
+            alert('aqui!');
+        });
         
+        $("#codigosaida").on("input", function() {
+            var codigosaida = $("#codigosaida").val();
+            var senhasaida = {{ $atividadeparticipante->senhasaida }};
+            if (codigosaida == senhasaida) {
+                //alert("iguais");
+                $(':input[type="submit"]').prop('disabled', false);
+            } else {
+                $(':input[type="submit"]').prop('disabled', true);
+            }
+        })
+
+        function showTime() {
+            var inicio = moment('{{ $inicio }}').toDate().getTime();
+            var agora = moment(Date.now()).toDate().getTime();
+            var diff = moment(inicio - agora);
+            diff.add(20, 'minutes');
+
+            $("#timet").text(diff.format("mm:ss")); //asHours().toString() + ":" + diff.asMinutes().toString());
+        }
+        setInterval(showTime, 1000);
     </script>
 @endsection

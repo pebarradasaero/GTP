@@ -6,14 +6,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    {{ trans('global.edit') }} {{ trans('cruds.actividadejf.title_singular') }}
+                    <strong>{{ $actividadejf->jf->nome ?? '' }} --> {{ $actividadejf->equipa->nome ?? '' }}</strong>
                 </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route("frontend.actividadejfs.update", [$actividadejf->id]) }}" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group" style="display: none">
                             <label class="required" for="jf_id">{{ trans('cruds.actividadejf.fields.jf') }}</label>
                             <select class="form-control select2" name="jf_id" id="jf_id" required>
                                 @foreach($jfs as $id => $entry)
@@ -27,7 +27,7 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.actividadejf.fields.jf_helper') }}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none">
                             <label class="required" for="grupo_id">{{ trans('cruds.actividadejf.fields.grupo') }}</label>
                             <select class="form-control select2" name="grupo_id" id="grupo_id" required>
                                 @foreach($grupos as $id => $entry)
@@ -41,7 +41,7 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.actividadejf.fields.grupo_helper') }}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="display: none">
                             <label class="required" for="equipa_id">{{ trans('cruds.actividadejf.fields.equipa') }}</label>
                             <select class="form-control select2" name="equipa_id" id="equipa_id" required>
                                 @foreach($equipas as $id => $entry)
@@ -56,13 +56,15 @@
                             <span class="help-block">{{ trans('cruds.actividadejf.fields.equipa_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required">{{ trans('cruds.actividadejf.fields.atividade') }}</label>
+                            <p style="text-align: center"><label class="required">{{ trans('cruds.actividadejf.fields.atividade') }}</label></p>
+                            <center>
                             @foreach(App\Models\Actividadejf::ATIVIDADE_RADIO as $key => $label)
-                                
-                                    <input type="radio" id="atividade_{{ $key }}" name="atividade" value="{{ $key }}" {{ old('atividade', $actividadejf->atividade) === (string) $key ? 'checked' : '' }} required>
-                                    <label for="atividade_{{ $key }}">{{ $label }}</label>
-                                
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="atividade_{{ $key }}" name="atividade" value="{{ $key }}" {{ old('atividade', $actividadejf->atividade) === (string) $key ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="atividade_{{ $key }}">{{ $label }}</label>
+                            </div>
                             @endforeach
+                            </center>
                             @if($errors->has('atividade'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('atividade') }}
@@ -71,13 +73,15 @@
                             <span class="help-block">{{ trans('cruds.actividadejf.fields.atividade_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required">{{ trans('cruds.actividadejf.fields.simpatia') }}</label>
+                            <p style="text-align: center"><label class="required">{{ trans('cruds.actividadejf.fields.simpatia') }}</label></p>
+                            <center>
                             @foreach(App\Models\Actividadejf::SIMPATIA_RADIO as $key => $label)
-                                <div>
-                                    <input type="radio" id="simpatia_{{ $key }}" name="simpatia" value="{{ $key }}" {{ old('simpatia', $actividadejf->simpatia) === (string) $key ? 'checked' : '' }} required>
-                                    <label for="simpatia_{{ $key }}">{{ $label }}</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="simpatia_{{ $key }}" name="simpatia" value="{{ $key }}" {{ old('simpatia', $actividadejf->simpatia) === (string) $key ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="simpatia_{{ $key }}">{{ $label }}</label>
                                 </div>
                             @endforeach
+                            </center>
                             @if($errors->has('simpatia'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('simpatia') }}
@@ -85,9 +89,9 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.actividadejf.fields.simpatia_helper') }}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="text-align: center">
                             <button class="btn btn-danger" type="submit">
-                                {{ trans('global.save') }}
+                                Guardar
                             </button>
                         </div>
                     </form>

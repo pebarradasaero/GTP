@@ -73,6 +73,7 @@ class Atividadeparticipante extends Model
         'atividade',
         'checkin',
         'checkout',
+        'senhasaida',
         'created_at',
         'updated_at',
         'deleted_at',

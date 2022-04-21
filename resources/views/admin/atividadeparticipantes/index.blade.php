@@ -35,6 +35,9 @@
                             {{ trans('cruds.atividadeparticipante.fields.equipa') }}
                         </th>
                         <th>
+                            Senha Saida
+                        </th>
+                        <th>
                             {{ trans('cruds.atividadeparticipante.fields.petisco') }}
                         </th>
                         <th>
@@ -65,6 +68,9 @@
                             </td>
                             <td>
                                 {{ $atividadeparticipante->equipa->nome ?? '' }}
+                            </td>
+                            <td>
+                                {{ $atividadeparticipante->senhasaida ?? '' }}
                             </td>
                             <td>
                                 {{ App\Models\Atividadeparticipante::PETISCO_RADIO[$atividadeparticipante->petisco] ?? '' }}

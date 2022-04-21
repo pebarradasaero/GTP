@@ -21,7 +21,7 @@ class ActividadejfController extends Controller
         abort_if(Gate::denies('actividadejf_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $actividadejfs = Actividadejf::with(['jf', 'grupo', 'equipa', 'created_by'])->get();
-
+        
         return view('frontend.actividadejfs.index', compact('actividadejfs'));
     }
 

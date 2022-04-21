@@ -29,6 +29,10 @@ class UpdateAtividadeparticipanteRequest extends FormRequest
                 
                 'integer',
             ],
+            'senhasaida' => [
+                
+                'integer',
+            ],
             'petisco' => [
                 'required',
             ],
