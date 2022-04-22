@@ -62,11 +62,6 @@
                 {{ trans('cruds.atividadeparticipante.title') }}
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#grupo_registo_regularidades" role="tab" data-toggle="tab">
-                {{ trans('cruds.registoRegularidade.title') }}
-            </a>
-        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="grupo_actividadejfs">
@@ -77,9 +72,6 @@
         </div>
         <div class="tab-pane" role="tabpanel" id="grupo_atividadeparticipantes">
             @includeIf('admin.grupos.relationships.grupoAtividadeparticipantes', ['atividadeparticipantes' => $grupo->grupoAtividadeparticipantes])
-        </div>
-        <div class="tab-pane" role="tabpanel" id="grupo_registo_regularidades">
-            @includeIf('admin.grupos.relationships.grupoRegistoRegularidades', ['registoRegularidades' => $grupo->grupoRegistoRegularidades])
         </div>
     </div>
 </div>
