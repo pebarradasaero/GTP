@@ -81,10 +81,14 @@ class AtividadeparticipanteController extends Controller
     public function update(UpdateAtividadeparticipanteRequest $request, Atividadeparticipante $atividadeparticipante)
     {
         $atividadeparticipante->update($request->all());
-
+        $ident=$atividadeparticipante->id;
         //faz checkout para terminar atividade
-        $atividadeparticipante->checkout = Carbon::now()->toDateTimeString();
-        $actividadecp = $atividadeparticipante;
+        $atividadeparticipante0= Atividadeparticipante::find($atividadeparticipante->id);
+        //dd($atividadeparticipante0);
+        $atividadeparticipante0->checkout = Carbon::now()->toDateTimeString();
+        $atividadeparticipante0->save();
+        
+        $actividadecp = Atividadeparticipante::find($ident);;
         //dd($actividadecp);
         //regista penalizacao jf_id grupo_id equipa_id
         $checkin=Carbon::parse($actividadecp->checkin);
@@ -98,11 +102,11 @@ class AtividadeparticipanteController extends Controller
             $actividadejf1 = DB::table('actividadejfs')
             ->where("actividadejfs.jf_id", '=',  $actividadecp->jf_id)->where("actividadejfs.grupo_id", '=',  $actividadecp->grupo_id)->where("actividadejfs.equipa_id", '=',  $actividadecp->equipa_id)
             ->update(['penalizacao' => '5']);
-            dd($actividadecp->jf_id);
+            //dd($actividadecp->jf_id);
         }
         
         //guarda o checkout
-        $atividadeparticipante->save();
+        
         return redirect()->route('frontend.atividadeparticipantes.index');
     }
 
