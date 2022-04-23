@@ -89,7 +89,7 @@ class AtividadeparticipanteController extends Controller
         //regista penalizacao jf_id grupo_id equipa_id
         $checkin=Carbon::parse($actividadecp->checkin);
         $checkoutx=Carbon::parse($actividadecp->checkout);
-        $tempo = $checkoutx->diff($checkin)->format('%I');;
+        $tempo = $checkoutx->diffInMinutes($checkin);
         
         //dd($tempo);
         
