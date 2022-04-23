@@ -8,6 +8,7 @@ return [
     'clickHereToVerify'              => 'Clique aqui para verificar',
     'create'                         => 'Criar',
     'dashboard'                      => 'Painel',
+    'resultados'                     => 'Resultados',
     'delete'                         => 'Eliminar',
     'cancel'                         => 'Cancelar',
     'clear'                          => 'Clica aqui para verificar',

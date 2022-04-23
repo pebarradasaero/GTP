@@ -6,7 +6,9 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Avaliação de atividade - Tempo Restante para completar: <span id="timet"></span>
+                        <center>Avaliação de atividade - Tempo Restante para completar: <h1><span style="color: red"
+                                    id="timet"></span></h1>
+                        </center>
                     </div>
 
                     <div class="card-body">
@@ -16,7 +18,7 @@
                             @method('PUT')
                             @csrf
                             <div class="form-group" style="text-align: center">
-                               <strong> {{ $atividadeparticipante->jf->nome ?? '' }} - 
+                                <strong> {{ $atividadeparticipante->jf->nome ?? '' }} -
                                     {{ $atividadeparticipante->equipa->nome ?? '' }}</strong>
                             </div>
                             <div class="form-group" style="display: none">
@@ -196,14 +198,33 @@
             }
         })
 
-        function showTime() {
-            var inicio = moment('{{ $atividadeparticipante->checkin }}').toDate().getTime();
-            var agora = moment(Date.now()).toDate().getTime();
-            var diff = moment(inicio - agora);
-            diff.add(20, 'minutes');
+            var countDownDate = moment('{{ $atividadeparticipante->checkin }}').add(20, 'minutes');
 
-            $("#timet").text(diff.format("mm:ss")); //asHours().toString() + ":" + diff.asMinutes().toString());
-        }
-        setInterval(showTime, 1000);
+            var x = setInterval(function() {
+                diff = countDownDate.diff(moment());
+
+                if (diff <= 0) {
+                    clearInterval(x);
+                    // If the count down is finished, write some text 
+                    $("#timet").text("Terminou o tempo!");
+                } else
+                    $("#timet").text(moment.utc(diff).format("mm:ss"));
+            }, 1000);
+           
+/*
+        var now = moment(); // new Date().getTime();
+        var countDownDate = moment('{{ $atividadeparticipante->checkin }}').add(20, 'minutes'); // new Date(now + 60 * 1000);
+
+        var x = setInterval(function() {
+                diff = countDownDate.diff(now);
+
+                if (diff <= 0) {
+                    clearInterval(x);
+                    // If the count down is finished, write some text 
+                    $("#timet").text("Terminou o tempo!");
+                } else
+                    $("#timet").text(moment.utc(diff).format("HH:mm:ss"));
+            }, 1000);    */    
+        
     </script>
 @endsection

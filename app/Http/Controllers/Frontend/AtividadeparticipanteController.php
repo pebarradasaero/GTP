@@ -11,6 +11,7 @@ use App\Models\Equipa;
 use App\Models\Grupo;
 use App\Models\JuntasFreguesium;
 use Gate;
+use DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Carbon;
@@ -83,8 +84,24 @@ class AtividadeparticipanteController extends Controller
 
         //faz checkout para terminar atividade
         $atividadeparticipante->checkout = Carbon::now()->toDateTimeString();
+        $actividadecp = $atividadeparticipante;
+        
+        //regista penalizacao jf_id grupo_id equipa_id
+        $checkin=Carbon::parse($actividadecp->checkin);
+        $checkoutx=Carbon::parse($actividadecp->checkout);
+        $tempo = $checkoutx->diff($checkin)->format('%I');;
+        
+        //dd($tempo);
+        
+        if($tempo >20)
+        {
+            $actividadejf1 = DB::table('actividadejfs')
+            ->where("actividadejfs.jf_id", '=',  $actividadecp->jf_id)->where("actividadejfs.grupo_id", '=',  $actividadecp->grupo_id)->where("actividadejfs.equipa_id", '=',  $actividadecp->equipa_id)
+            ->update(['penalizacao' => '-5']);
+        }
+        
+        //guarda o checkout
         $atividadeparticipante->save();
-
         return redirect()->route('frontend.atividadeparticipantes.index');
     }
 

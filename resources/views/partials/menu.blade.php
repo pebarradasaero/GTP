@@ -15,6 +15,16 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
+        @can('resultados_access')
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.resultados") }}" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
+
+                </i>
+                {{ trans('global.resultados') }}
+            </a>
+        </li>
+        @endcan
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }} {{ request()->is("admin/audit-logs*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
