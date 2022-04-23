@@ -85,7 +85,7 @@ class AtividadeparticipanteController extends Controller
         //faz checkout para terminar atividade
         $atividadeparticipante->checkout = Carbon::now()->toDateTimeString();
         $actividadecp = $atividadeparticipante;
-        
+        //dd($actividadecp);
         //regista penalizacao jf_id grupo_id equipa_id
         $checkin=Carbon::parse($actividadecp->checkin);
         $checkoutx=Carbon::parse($actividadecp->checkout);
@@ -98,6 +98,7 @@ class AtividadeparticipanteController extends Controller
             $actividadejf1 = DB::table('actividadejfs')
             ->where("actividadejfs.jf_id", '=',  $actividadecp->jf_id)->where("actividadejfs.grupo_id", '=',  $actividadecp->grupo_id)->where("actividadejfs.equipa_id", '=',  $actividadecp->equipa_id)
             ->update(['penalizacao' => '5']);
+            dd($actividadecp->jf_id);
         }
         
         //guarda o checkout
