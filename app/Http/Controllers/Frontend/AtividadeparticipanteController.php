@@ -97,7 +97,7 @@ class AtividadeparticipanteController extends Controller
         {
             $actividadejf1 = DB::table('actividadejfs')
             ->where("actividadejfs.jf_id", '=',  $actividadecp->jf_id)->where("actividadejfs.grupo_id", '=',  $actividadecp->grupo_id)->where("actividadejfs.equipa_id", '=',  $actividadecp->equipa_id)
-            ->update(['penalizacao' => '-5']);
+            ->update(['penalizacao' => '5']);
         }
         
         //guarda o checkout
