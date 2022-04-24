@@ -39,24 +39,24 @@
                                     @foreach ($actividadejfs as $key => $actividadejf)
                                         @php
                                             if (strpos($actividadejf->equipa->nome, 'Azul') !== false) {
-                                                $color = '#3f6c72';
+                                                $color = 'blue';
                                                 $txtcolor = 'white';
                                             } else {
                                                 if (strpos($actividadejf->equipa->nome, 'Amarelo') !== false) {
-                                                    $color = '#c4993b';
+                                                    $color = 'yellow';
                                                     $txtcolor = 'black';
                                                 } else {
                                                     if (strpos($actividadejf->equipa->nome, 'Verde') !== false) {
-                                                        $color = '#6e933b';
+                                                        $color = 'green';
                                                         $txtcolor = 'white';
                                                     } else {
                                                         if (strpos($actividadejf->equipa->nome, 'Cinza') !== false) {
-                                                            $color = '#6d6e70';
-                                                            $txtcolor = 'white';
+                                                            $color = 'silver';
+                                                            $txtcolor = 'black';
                                                         } else {
                                                             if (strpos($actividadejf->equipa->nome, 'Rosa') !== false) {
-                                                                $color = '#b10059';
-                                                                $txtcolor = 'white';
+                                                                $color = 'pink';
+                                                                $txtcolor = 'black';
                                                             }
                                                         }
                                                     }
