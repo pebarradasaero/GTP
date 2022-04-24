@@ -39,24 +39,24 @@
                                     @foreach ($actividadejfs as $key => $actividadejf)
                                         @php
                                             if (strpos($actividadejf->equipa->nome, 'Azul') !== false) {
-                                                $color = 'blue';
+                                                $color = '#3f6c72';
                                                 $txtcolor = 'white';
                                             } else {
                                                 if (strpos($actividadejf->equipa->nome, 'Amarelo') !== false) {
-                                                    $color = 'yellow';
+                                                    $color = '#c4993b';
                                                     $txtcolor = 'black';
                                                 } else {
-                                                    if (strpos($actividadejf->equipa->nome, 'Vermelho') !== false) {
-                                                        $color = 'red';
+                                                    if (strpos($actividadejf->equipa->nome, 'Verde') !== false) {
+                                                        $color = '#6e933b';
                                                         $txtcolor = 'white';
                                                     } else {
-                                                        if (strpos($actividadejf->equipa->nome, 'Branco') !== false) {
-                                                            $color = 'white';
-                                                            $txtcolor = 'black';
+                                                        if (strpos($actividadejf->equipa->nome, 'Cinza') !== false) {
+                                                            $color = '#6d6e70';
+                                                            $txtcolor = 'white';
                                                         } else {
                                                             if (strpos($actividadejf->equipa->nome, 'Rosa') !== false) {
-                                                                $color = 'pink';
-                                                                $txtcolor = 'black';
+                                                                $color = '#b10059';
+                                                                $txtcolor = 'white';
                                                             }
                                                         }
                                                     }
@@ -157,7 +157,7 @@
             $.extend(true, $.fn.dataTable.defaults, {
                 orderCellsTop: true,
                 order: [
-                    [1, 'desc']
+                    [1, 'asc']
                 ],
                 pageLength: 100,
             });
